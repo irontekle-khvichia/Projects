@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio N8 - Calendario 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Titillium Web", sans-serif;
+            background-color: #f4f1ea;
+            color: #1f2933;
+        }
+
+        .cabecera {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 15px 0;
+            text-align: center;
+            background-color: #2f3e46;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .titulo {
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            list-style: none;
+            padding: 0 20px;
+        }
+
+        .enlace {
+            display: block;
+            padding: 5px 14px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: white;
+            border: 1px solid #9aa5ab;
+            border-radius: 20px;
+        }
+
+        .enlace:hover {
+            background-color: white;
+            color: #2f3e46;
+        }
+
+    
+        .principal {
+            max-width: 1300px;
+            margin: 170px auto 40px;
+        }
+
+        .fila-meses {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .mes {
+            padding: 10px 16px 18px;
+            background-color: white;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px #ccc;
+            scroll-margin-top: 190px;
+        }
+
+        .tabla {
+            border-collapse: separate;
+            border-spacing: 4px;
+        }
+
+        .titulo-mes {
+            padding: 12px 0;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-align: center;
+            color: #a8512e;
+        }
+
+        .dia-semana,
+        .dia,
+        .vacio {
+            width: 54px;
+            height: 36px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .dia-semana {
+            background-color: #a8512e;
+            color: white;
+            font-weight: bold;
+        }
+
+        .dia {
+            font-size: 1.3rem;
+            background-color: #f7f5f0;
+        }
+
+        .dia:hover {
+            background-color: #f9e8e1;
+        }
+
+        .sabado {
+            color: #a8512e;
+        }
+
+        .domingo {
+            color: #a8512e;
+            font-weight: bold;
+        }
+
+        .celda-foto {
+            padding: 0;
+        }
+
+        .foto {
+            display: block;
+            width: 160px;
+            height: 357px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        
+        .pie {
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+            background-color: #2f3e46;
+        }
+    </style>
+</head>
+<body>
+    <header class="cabecera">
+        <h1 class="titulo">CALENDARIO 2026</h1>
+        <nav>
+            <ul class="menu">
+            <li><a class="enlace" href="#enero">ENERO</a></li>
+            <li><a class="enlace" href="#febrero">FEBRERO</a></li>
+            <li><a class="enlace" href="#marzo">MARZO</a></li>
+            <li><a class="enlace" href="#abril">ABRIL</a></li>
+            <li><a class="enlace" href="#mayo">MAYO</a></li>
+            <li><a class="enlace" href="#junio">JUNIO</a></li>
+            <li><a class="enlace" href="#julio">JULIO</a></li>
+            <li><a class="enlace" href="#agosto">AGOSTO</a></li>
+            <li><a class="enlace" href="#septiembre">SEPTIEMBRE</a></li>
+            <li><a class="enlace" href="#octubre">OCTUBRE</a></li>
+            <li><a class="enlace" href="#noviembre">NOVIEMBRE</a></li>
+            <li><a class="enlace" href="#diciembre">DICIEMBRE</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="principal">
+    <section class="fila-meses">
+        <article class="mes" id="enero">
+            <table class="tabla">
+                <caption class="titulo-mes">ENERO</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/enero.jpg" alt="Ilustración del mes de enero"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="dia">1</td>
+                        <td class="dia">2</td>
+                        <td class="dia sabado">3</td>
+                        <td class="dia domingo">4</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">5</td>
+                        <td class="dia">6</td>
+                        <td class="dia">7</td>
+                        <td class="dia">8</td>
+                        <td class="dia">9</td>
+                        <td class="dia sabado">10</td>
+                        <td class="dia domingo">11</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">12</td>
+                        <td class="dia">13</td>
+                        <td class="dia">14</td>
+                        <td class="dia">15</td>
+                        <td class="dia">16</td>
+                        <td class="dia sabado">17</td>
+                        <td class="dia domingo">18</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">19</td>
+                        <td class="dia">20</td>
+                        <td class="dia">21</td>
+                        <td class="dia">22</td>
+                        <td class="dia">23</td>
+                        <td class="dia sabado">24</td>
+                        <td class="dia domingo">25</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">26</td>
+                        <td class="dia">27</td>
+                        <td class="dia">28</td>
+                        <td class="dia">29</td>
+                        <td class="dia">30</td>
+                        <td class="dia sabado">31</td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="mes" id="febrero">
+            <table class="tabla">
+                <caption class="titulo-mes">FEBRERO</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/febrero.jpg" alt="Ilustración del mes de febrero"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="dia domingo">1</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">2</td>
+                        <td class="dia">3</td>
+                        <td class="dia">4</td>
+                        <td class="dia">5</td>
+                        <td class="dia">6</td>
+                        <td class="dia sabado">7</td>
+                        <td class="dia domingo">8</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">9</td>
+                        <td class="dia">10</td>
+                        <td class="dia">11</td>
+                        <td class="dia">12</td>
+                        <td class="dia">13</td>
+                        <td class="dia sabado">14</td>
+                        <td class="dia domingo">15</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">16</td>
+                        <td class="dia">17</td>
+                        <td class="dia">18</td>
+                        <td class="dia">19</td>
+                        <td class="dia">20</td>
+                        <td class="dia sabado">21</td>
+                        <td class="dia domingo">22</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">23</td>
+                        <td class="dia">24</td>
+                        <td class="dia">25</td>
+                        <td class="dia">26</td>
+                        <td class="dia">27</td>
+                        <td class="dia sabado">28</td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <section class="fila-meses">
+        <article class="mes" id="marzo">
+            <table class="tabla">
+                <caption class="titulo-mes">MARZO</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="7"><img class="foto" src="imagenes/marzo.jpg" alt="Ilustración del mes de marzo"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="dia domingo">1</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">2</td>
+                        <td class="dia">3</td>
+                        <td class="dia">4</td>
+                        <td class="dia">5</td>
+                        <td class="dia">6</td>
+                        <td class="dia sabado">7</td>
+                        <td class="dia domingo">8</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">9</td>
+                        <td class="dia">10</td>
+                        <td class="dia">11</td>
+                        <td class="dia">12</td>
+                        <td class="dia">13</td>
+                        <td class="dia sabado">14</td>
+                        <td class="dia domingo">15</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">16</td>
+                        <td class="dia">17</td>
+                        <td class="dia">18</td>
+                        <td class="dia">19</td>
+                        <td class="dia">20</td>
+                        <td class="dia sabado">21</td>
+                        <td class="dia domingo">22</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">23</td>
+                        <td class="dia">24</td>
+                        <td class="dia">25</td>
+                        <td class="dia">26</td>
+                        <td class="dia">27</td>
+                        <td class="dia sabado">28</td>
+                        <td class="dia domingo">29</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">30</td>
+                        <td class="dia">31</td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="mes" id="abril">
+            <table class="tabla">
+                <caption class="titulo-mes">ABRIL</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/abril.jpg" alt="Ilustración del mes de abril"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="dia">1</td>
+                        <td class="dia">2</td>
+                        <td class="dia">3</td>
+                        <td class="dia sabado">4</td>
+                        <td class="dia domingo">5</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">6</td>
+                        <td class="dia">7</td>
+                        <td class="dia">8</td>
+                        <td class="dia">9</td>
+                        <td class="dia">10</td>
+                        <td class="dia sabado">11</td>
+                        <td class="dia domingo">12</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">13</td>
+                        <td class="dia">14</td>
+                        <td class="dia">15</td>
+                        <td class="dia">16</td>
+                        <td class="dia">17</td>
+                        <td class="dia sabado">18</td>
+                        <td class="dia domingo">19</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">20</td>
+                        <td class="dia">21</td>
+                        <td class="dia">22</td>
+                        <td class="dia">23</td>
+                        <td class="dia">24</td>
+                        <td class="dia sabado">25</td>
+                        <td class="dia domingo">26</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">27</td>
+                        <td class="dia">28</td>
+                        <td class="dia">29</td>
+                        <td class="dia">30</td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <section class="fila-meses">
+        <article class="mes" id="mayo">
+            <table class="tabla">
+                <caption class="titulo-mes">MAYO</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/mayo.jpg" alt="Ilustración del mes de mayo"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="dia">1</td>
+                        <td class="dia sabado">2</td>
+                        <td class="dia domingo">3</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">4</td>
+                        <td class="dia">5</td>
+                        <td class="dia">6</td>
+                        <td class="dia">7</td>
+                        <td class="dia">8</td>
+                        <td class="dia sabado">9</td>
+                        <td class="dia domingo">10</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">11</td>
+                        <td class="dia">12</td>
+                        <td class="dia">13</td>
+                        <td class="dia">14</td>
+                        <td class="dia">15</td>
+                        <td class="dia sabado">16</td>
+                        <td class="dia domingo">17</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">18</td>
+                        <td class="dia">19</td>
+                        <td class="dia">20</td>
+                        <td class="dia">21</td>
+                        <td class="dia">22</td>
+                        <td class="dia sabado">23</td>
+                        <td class="dia domingo">24</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">25</td>
+                        <td class="dia">26</td>
+                        <td class="dia">27</td>
+                        <td class="dia">28</td>
+                        <td class="dia">29</td>
+                        <td class="dia sabado">30</td>
+                        <td class="dia domingo">31</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="mes" id="junio">
+            <table class="tabla">
+                <caption class="titulo-mes">JUNIO</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/junio.jpg" alt="Ilustración del mes de junio"></td>
+                    </tr>
+                    <tr>
+                        <td class="dia">1</td>
+                        <td class="dia">2</td>
+                        <td class="dia">3</td>
+                        <td class="dia">4</td>
+                        <td class="dia">5</td>
+                        <td class="dia sabado">6</td>
+                        <td class="dia domingo">7</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">8</td>
+                        <td class="dia">9</td>
+                        <td class="dia">10</td>
+                        <td class="dia">11</td>
+                        <td class="dia">12</td>
+                        <td class="dia sabado">13</td>
+                        <td class="dia domingo">14</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">15</td>
+                        <td class="dia">16</td>
+                        <td class="dia">17</td>
+                        <td class="dia">18</td>
+                        <td class="dia">19</td>
+                        <td class="dia sabado">20</td>
+                        <td class="dia domingo">21</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">22</td>
+                        <td class="dia">23</td>
+                        <td class="dia">24</td>
+                        <td class="dia">25</td>
+                        <td class="dia">26</td>
+                        <td class="dia sabado">27</td>
+                        <td class="dia domingo">28</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">29</td>
+                        <td class="dia">30</td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <section class="fila-meses">
+        <article class="mes" id="julio">
+            <table class="tabla">
+                <caption class="titulo-mes">JULIO</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/julio.jpg" alt="Ilustración del mes de julio"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="dia">1</td>
+                        <td class="dia">2</td>
+                        <td class="dia">3</td>
+                        <td class="dia sabado">4</td>
+                        <td class="dia domingo">5</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">6</td>
+                        <td class="dia">7</td>
+                        <td class="dia">8</td>
+                        <td class="dia">9</td>
+                        <td class="dia">10</td>
+                        <td class="dia sabado">11</td>
+                        <td class="dia domingo">12</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">13</td>
+                        <td class="dia">14</td>
+                        <td class="dia">15</td>
+                        <td class="dia">16</td>
+                        <td class="dia">17</td>
+                        <td class="dia sabado">18</td>
+                        <td class="dia domingo">19</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">20</td>
+                        <td class="dia">21</td>
+                        <td class="dia">22</td>
+                        <td class="dia">23</td>
+                        <td class="dia">24</td>
+                        <td class="dia sabado">25</td>
+                        <td class="dia domingo">26</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">27</td>
+                        <td class="dia">28</td>
+                        <td class="dia">29</td>
+                        <td class="dia">30</td>
+                        <td class="dia">31</td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="mes" id="agosto">
+            <table class="tabla">
+                <caption class="titulo-mes">AGOSTO</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="7"><img class="foto" src="imagenes/agosto.jpg" alt="Ilustración del mes de agosto"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="dia sabado">1</td>
+                        <td class="dia domingo">2</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">3</td>
+                        <td class="dia">4</td>
+                        <td class="dia">5</td>
+                        <td class="dia">6</td>
+                        <td class="dia">7</td>
+                        <td class="dia sabado">8</td>
+                        <td class="dia domingo">9</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">10</td>
+                        <td class="dia">11</td>
+                        <td class="dia">12</td>
+                        <td class="dia">13</td>
+                        <td class="dia">14</td>
+                        <td class="dia sabado">15</td>
+                        <td class="dia domingo">16</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">17</td>
+                        <td class="dia">18</td>
+                        <td class="dia">19</td>
+                        <td class="dia">20</td>
+                        <td class="dia">21</td>
+                        <td class="dia sabado">22</td>
+                        <td class="dia domingo">23</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">24</td>
+                        <td class="dia">25</td>
+                        <td class="dia">26</td>
+                        <td class="dia">27</td>
+                        <td class="dia">28</td>
+                        <td class="dia sabado">29</td>
+                        <td class="dia domingo">30</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">31</td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <section class="fila-meses">
+        <article class="mes" id="septiembre">
+            <table class="tabla">
+                <caption class="titulo-mes">SEPTIEMBRE</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/septiembre.jpg" alt="Ilustración del mes de septiembre"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="dia">1</td>
+                        <td class="dia">2</td>
+                        <td class="dia">3</td>
+                        <td class="dia">4</td>
+                        <td class="dia sabado">5</td>
+                        <td class="dia domingo">6</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">7</td>
+                        <td class="dia">8</td>
+                        <td class="dia">9</td>
+                        <td class="dia">10</td>
+                        <td class="dia">11</td>
+                        <td class="dia sabado">12</td>
+                        <td class="dia domingo">13</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">14</td>
+                        <td class="dia">15</td>
+                        <td class="dia">16</td>
+                        <td class="dia">17</td>
+                        <td class="dia">18</td>
+                        <td class="dia sabado">19</td>
+                        <td class="dia domingo">20</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">21</td>
+                        <td class="dia">22</td>
+                        <td class="dia">23</td>
+                        <td class="dia">24</td>
+                        <td class="dia">25</td>
+                        <td class="dia sabado">26</td>
+                        <td class="dia domingo">27</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">28</td>
+                        <td class="dia">29</td>
+                        <td class="dia">30</td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="mes" id="octubre">
+            <table class="tabla">
+                <caption class="titulo-mes">OCTUBRE</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/octubre.jpg" alt="Ilustración del mes de octubre"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="dia">1</td>
+                        <td class="dia">2</td>
+                        <td class="dia sabado">3</td>
+                        <td class="dia domingo">4</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">5</td>
+                        <td class="dia">6</td>
+                        <td class="dia">7</td>
+                        <td class="dia">8</td>
+                        <td class="dia">9</td>
+                        <td class="dia sabado">10</td>
+                        <td class="dia domingo">11</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">12</td>
+                        <td class="dia">13</td>
+                        <td class="dia">14</td>
+                        <td class="dia">15</td>
+                        <td class="dia">16</td>
+                        <td class="dia sabado">17</td>
+                        <td class="dia domingo">18</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">19</td>
+                        <td class="dia">20</td>
+                        <td class="dia">21</td>
+                        <td class="dia">22</td>
+                        <td class="dia">23</td>
+                        <td class="dia sabado">24</td>
+                        <td class="dia domingo">25</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">26</td>
+                        <td class="dia">27</td>
+                        <td class="dia">28</td>
+                        <td class="dia">29</td>
+                        <td class="dia">30</td>
+                        <td class="dia sabado">31</td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <section class="fila-meses">
+        <article class="mes" id="noviembre">
+            <table class="tabla">
+                <caption class="titulo-mes">NOVIEMBRE</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="7"><img class="foto" src="imagenes/noviembre.jpg" alt="Ilustración del mes de noviembre"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="dia domingo">1</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">2</td>
+                        <td class="dia">3</td>
+                        <td class="dia">4</td>
+                        <td class="dia">5</td>
+                        <td class="dia">6</td>
+                        <td class="dia sabado">7</td>
+                        <td class="dia domingo">8</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">9</td>
+                        <td class="dia">10</td>
+                        <td class="dia">11</td>
+                        <td class="dia">12</td>
+                        <td class="dia">13</td>
+                        <td class="dia sabado">14</td>
+                        <td class="dia domingo">15</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">16</td>
+                        <td class="dia">17</td>
+                        <td class="dia">18</td>
+                        <td class="dia">19</td>
+                        <td class="dia">20</td>
+                        <td class="dia sabado">21</td>
+                        <td class="dia domingo">22</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">23</td>
+                        <td class="dia">24</td>
+                        <td class="dia">25</td>
+                        <td class="dia">26</td>
+                        <td class="dia">27</td>
+                        <td class="dia sabado">28</td>
+                        <td class="dia domingo">29</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">30</td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="mes" id="diciembre">
+            <table class="tabla">
+                <caption class="titulo-mes">DICIEMBRE</caption>
+                <tbody>
+                    <tr>
+                        <th class="dia-semana">L</th>
+                        <th class="dia-semana">M</th>
+                        <th class="dia-semana">X</th>
+                        <th class="dia-semana">J</th>
+                        <th class="dia-semana">V</th>
+                        <th class="dia-semana">S</th>
+                        <th class="dia-semana">D</th>
+                        <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/diciembre.jpg" alt="Ilustración del mes de diciembre"></td>
+                    </tr>
+                    <tr>
+                        <td class="vacio"></td>
+                        <td class="dia">1</td>
+                        <td class="dia">2</td>
+                        <td class="dia">3</td>
+                        <td class="dia">4</td>
+                        <td class="dia sabado">5</td>
+                        <td class="dia domingo">6</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">7</td>
+                        <td class="dia">8</td>
+                        <td class="dia">9</td>
+                        <td class="dia">10</td>
+                        <td class="dia">11</td>
+                        <td class="dia sabado">12</td>
+                        <td class="dia domingo">13</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">14</td>
+                        <td class="dia">15</td>
+                        <td class="dia">16</td>
+                        <td class="dia">17</td>
+                        <td class="dia">18</td>
+                        <td class="dia sabado">19</td>
+                        <td class="dia domingo">20</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">21</td>
+                        <td class="dia">22</td>
+                        <td class="dia">23</td>
+                        <td class="dia">24</td>
+                        <td class="dia">25</td>
+                        <td class="dia sabado">26</td>
+                        <td class="dia domingo">27</td>
+                    </tr>
+                    <tr>
+                        <td class="dia">28</td>
+                        <td class="dia">29</td>
+                        <td class="dia">30</td>
+                        <td class="dia">31</td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                        <td class="vacio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    </main>
+    <footer class="pie">
+        <p>Confección y publicación de páginas web</p>
+        <p>Valencia, 2026</p>
+    </footer>
+</body>
+</html>

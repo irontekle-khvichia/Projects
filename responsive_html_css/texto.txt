@@ -1,0 +1,36 @@
+examen pr ctico css. sitio responsive display flex
+Alumnos participantes
+
+Pasa el rat¢n sobre el nombre de cada alumno para ver su imagen.
+
+    Joey Ramone
+
+    Johnny Rotten
+
+    Joe Strummer
+
+    Blondie
+
+    Evaristo P ramos
+
+    Patti Smith
+
+    Ana Curra
+
+    Kim Gordon
+
+    Kim Deal
+
+Contenidos del examen
+Efectos de sombras paralelas para texto y cajas
+
+Una aplicaci¢n interesante del uso de media queries es que adem s de adaptar la presentaci¢n al formato del dispositivo para que se ajuste a ‚l, podemos hacer que la apariencia de un mismo elemento sea completamente diferente para cada resoluci¢n de pantalla. Por ejemplo, este mismo p rrafo va a ir cambiando en cada punto de corte de nuestro CSS.
+
+Efectos de transformaci¢n.
+
+Con CSS3 tambi‚n podemos aplicar efectos a los elementos del DOM.
+
+REFLEJOREFLEJO
+Comprueba tu nota
+
+?

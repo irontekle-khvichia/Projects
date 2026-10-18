@@ -1,0 +1,824 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contenedor {
+    width: auto;
+    margin: 0 auto;
+}
+
+.header-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+    background-color: rgb(93, 134, 136);
+    margin: 0 auto;
+
+}
+
+.logo-header {
+
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 40px;
+    border-radius: 50%;
+    margin: 0;
+
+}
+
+.lema {
+
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4rem;
+    text-align: center;
+    padding-top: 10px;
+    color: rgb(73, 71, 71);
+}
+
+.enlace-lema {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+nav {
+    width: 100%;
+    position: relative;
+}
+
+.menu-principal {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.menu-principal li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    height: 45px;
+    color: white;
+    border: 1px solid rgb(198, 194, 194);
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #a9a5a5;
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    padding: 30px;
+
+}
+
+
+.menu-principal li a:hover {
+    background-color: lightskyblue;
+}
+
+
+.submenu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 15px 20px;
+    position: absolute;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    gap: 30px;
+    z-index: 1000;
+    border: 1px solid gray;
+}
+
+.menu-principal li:hover .submenu {
+    display: flex;
+}
+
+.submenu li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+}
+
+.submenu li a:hover {
+    color: #1a5f8a;
+    text-decoration: underline;
+}
+
+section .titulo-main {
+    text-align: center;
+    padding: 20px 25px 20px;
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+    color: darkmagenta;
+}
+
+.forma-tic-intro {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imagen.index/imagen.forma.tix/school.image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    min-height: 700px;
+    width: auto;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: 1.3rem;
+}
+
+.forma-tic-intro h3 {
+    padding-bottom: 15px;
+    font-size: 3rem;
+    font-family: "Raleway", sans-serif;
+}
+
+.forma-tic-intro h3::after {
+    content: "\25BE";
+}
+
+.forma-tic-intro p {
+    padding-top: 15px;
+    font-size: 2rem;
+    font-family: "Raleway", sans-serif;
+}
+
+.objetivo h3 {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.3rem;
+    text-align: center;
+    padding: 30px;
+    color: rgb(108, 54, 158);
+}
+
+
+.objetivo p {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 40px 20px 40px;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+.innovacion h3 {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.3rem;
+    text-align: center;
+    padding: 30px;
+    color: rgb(108, 54, 158);
+}
+
+.innovacion p {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 40px 80px 40px;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+.col-servicios h3 {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.3rem;
+    text-align: center;
+    padding: 20px;
+    color: rgb(108, 54, 158);
+}
+
+.col-servicios p {
+     font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 40px 80px 40px;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+
+.cursos-intro {
+    text-align: center;
+    padding: 30px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cursos-intro h2 {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3rem;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.cursos-intro p {
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 40px 20px 40px;
+    font-size: 1.2rem;
+    padding-bottom: 10px;
+}
+
+.stages {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px 40px 50px ;
+}
+
+article.stage-card {
+    width: 100%;
+    max-width: 700px;
+    padding: 25px 30px;
+    border: 2px solid gray;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.stage-card h3 {
+    font-family: "Raleway", sans-serif;
+    color: #1a5f8a;
+}
+
+.stage-card p {
+    line-height: 1.5;
+    font-family: "Raleway", sans-serif;
+}
+.stage-card a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: darkcyan;
+    color: azure;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.stage-card a:hover {
+    background-color: rgb(110, 165, 167);
+}
+
+
+.curso-intro {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imagen.index/imagen.cursos/infantil.img.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 700px;
+    padding: 40px 30px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+}
+
+.curso {
+    padding-bottom: 20px;
+}
+
+.curso .titulo-entrar {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4rem;
+    text-align: center;
+    padding-top: 10px;
+}
+
+
+.curso h3 {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 30px;
+    color: #3a3a3a;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 1.95rem;
+}
+
+.curso .intro-titulo::after {
+    content: "\25BE";
+}
+
+.curso p {
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 40px 20px 40px;
+    font-size: 1.3rem;
+    padding-bottom: 10px;
+
+}
+
+/* CSS de ficha-Director*/
+.ficha-personal {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 30px;
+}
+
+.ficha-cabezera {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.imagen-perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ficha-titulo h2 {
+    font-size: 2rem;
+    color: #1a5f8a;
+}
+
+.su-post {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #1a5f8a;
+   
+}
+
+.ficha-personal hr {
+    border: none;
+    border-top: 2px solid hsl(0, 2%, 70%);
+    margin: 20px 0;
+}
+
+.ficha-contenido {
+    padding-left: 7px;
+}
+.ficha-contenido p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #5b5858;
+    font-size: 1.5rem;
+}
+
+.ficha-contenido h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #1a5f8a;
+    font-size: 2rem;
+}
+
+.ficha-contenido ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.ficha-contenido ul li {
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+details {
+    margin: 25px 0;
+    padding: 15px 20px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    background-color: rgb(244, 239, 239);
+    font-weight: bold;
+    font-size: 1.15rem;
+
+}
+
+details, summary {
+    cursor: pointer;
+}
+
+details p{
+    margin-top: 15px;
+}
+
+.imagen-personal {
+    width: 350px;
+    height: 250px;
+    border-radius: 6px;
+    object-fit: cover;
+    display: block;
+}
+
+/* CSS de centro y Galeria*/
+.galeria-fotos h2 {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 3rem;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.fotos-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0px 40px 50px;
+}
+
+.foto-item {
+    position: relative;
+    width: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+
+}
+
+.foto-item img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+.foto-item:hover img {
+    transform: scale(1.05);
+}
+
+.foto-item p {
+    font-family: "Bungee Inline", sans-serif;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color:white;
+    margin: 0;
+    padding: 10px;
+    font-weight: 100;
+    font-size: 1.5rem;
+}
+
+.add-info h2 {
+   font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.3rem;
+    text-align: center;
+    padding: 30px;
+    color: rgb(77, 70, 83);
+}
+
+.add-info p {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 40px 20px 40px;
+    font-size: 1.7rem;
+    text-align: center;
+}
+/* CSS de Contactos*/
+
+.intro-contactos {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imagen.index/imagen-contactos/ninos-colegio.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 600px;
+    padding: 40px 30px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: 1.3rem;
+}
+
+.intro-contactos h2 {
+    padding-bottom: 10px;
+    font-size: 2.5rem;
+}
+
+.intro-contactos p {
+    padding-top: 15px;
+    font-size: 1.92rem;
+}
+
+.contacto {
+    display: flex;
+    min-height: auto;
+}
+
+.contacto-form {
+    flex: 1;
+    padding: 30px 25px;
+}
+
+
+.contacto-form h2 {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    margin: 0 0 24px;
+    color: rgb(117, 176, 213);
+}
+
+.info-horario {
+    padding: 20px 25px;
+    font-family: "Raleway", sans-serif;
+}
+
+.info-horario h3 {
+    color: lightskyblue;
+    font-size: 2rem;
+    padding-bottom: 20px;
+}
+
+
+.info-horario ul {
+    padding-left: 20px;
+    margin: 15px 0 30px;
+}
+
+.info-horario li {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.info-horario p {
+    margin: 0 0 15px;
+    font-size: 1.2rem;
+}
+
+.contacto-form {
+    font-size: 1.8rem;
+}
+
+.campo {
+    margin-bottom: 26px;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.req {
+    color: #c0392b;
+    margin-left: 2px;
+}
+
+input,
+textarea {
+    width: 60%;
+    padding: 15px 18px;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+textarea {
+    min-height: 140px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgb(139, 134, 134);
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: .15s;
+}
+
+button:hover {
+    background-color: cadetblue;
+}
+
+
+.ubicacion {
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    padding-bottom: 10px;
+
+}
+
+.ubicacion h2 {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 1rem;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+}
+
+.ubicacion iframe {
+    display: block;
+    width: 900px;
+    margin: 0 auto;
+}
+
+/* CSS de Redes Sociales*/
+.redes-intro {
+    text-align: center;
+    padding: 20px 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.red-social {
+    padding: 20px 40px 40px;
+}
+
+.red-cabezera {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.red-cabezera i {
+    font-size: 2rem;
+}
+
+.red-cabezera h3 {
+    margin: 0;
+}
+.redes-intro h2 {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.3rem;
+    text-align: center;
+    padding: 30px;
+    color: rgb(77, 70, 83);
+}
+
+.redes-intro p {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    margin: 0 0 24px;
+    color: rgb(53, 52, 52);
+}
+
+.boton-red {
+    padding: 10px 20px;
+    background-color: rgb(92, 149, 184);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.boton-red:hover {
+    background-color: hsl(203, 70%, 35%);
+}
+.publications {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    gap: 20px;
+
+}
+
+.post {
+    width: 280px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.post img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+
+.post p {
+    font-family: "Raleway", sans-serif;
+    padding: 12px;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/*CSS de footer*/
+
+footer {
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    padding: 30px 20px;
+    background-color: rgb(139, 167, 168);
+}
+
+.redes-footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contacto-pie {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.2rem;
+    color: #3a3939;
+}
+
+footer p:first-child {
+    font-weight: bold;
+}
+
+footer a {
+    color: #363b36;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #3a3a3a;
+    text-decoration: underline;
+}
+
+.redes-footer i {
+    font-size: 2rem;
+    transition: color 0.3s ease;
+}
+
+.insta {
+    color: #c2493c;
+}
+
+.face {
+    color: lightskyblue;
+}
+
+.link {
+    color: #1a5f8a;
+}
+
+.redes-footer i:hover {
+    color: #6bb3e0;
+}
