@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio N8 - Calendario 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Titillium Web", sans-serif;
+            background-color: #f4f1ea;
+            color: #1f2933;
+        }
+
+        .cabecera {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 15px 0;
+            text-align: center;
+            background-color: #597d91;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .titulo {
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            list-style: none;
+            padding: 0 20px;
+        }
+
+        .enlace {
+            display: block;
+            padding: 5px 14px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: white;
+            border: 1px solid #9aa5ab;
+            border-radius: 20px;
+        }
+
+        .enlace:hover {
+            background-color: white;
+            color: #2f3e46;
+        }
+
+
+        .principal {
+            max-width: 1300px;
+            margin: 170px auto 40px;
+        }
+
+        .fila-meses {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .mes {
+            padding: 10px 16px 18px;
+            background-color: white;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px #ccc;
+            scroll-margin-top: 190px;
+        }
+
+        .tabla {
+            border-collapse: separate;
+            border-spacing: 4px;
+        }
+
+        .titulo-mes {
+            padding: 12px 0;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-align: center;
+            color: #a8512e;
+        }
+
+        .dia-semana,
+        .dia,
+        .vacio {
+            width: 54px;
+            height: 36px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .dia-semana {
+            background-color: #a8512e;
+            color: white;
+            font-weight: bold;
+        }
+
+        .dia {
+            font-size: 1.3rem;
+            background-color: #f7f5f0;
+        }
+
+        .dia:hover {
+            background-color: #f9e8e1;
+        }
+
+        .sabado {
+            color: #a8512e;
+        }
+
+        .domingo {
+            color: #a8512e;
+            font-weight: bold;
+        }
+
+        .evento {
+
+            display: block;
+            font-family: 'Material Symbols Outlined';
+            font-size: 20px;
+            color: #EA3323;
+            font-weight: normal;
+            font-style: normal;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .celda-foto {
+            padding: 0;
+        }
+
+        .foto {
+            display: block;
+            width: 160px;
+            height: 357px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+
+        .pie {
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+            background-color: #2f3e46;
+        }
+
+        .evento {
+
+            display: block;
+            font-family: 'Material Symbols Outlined';
+            font-size: 15px;
+            color: #EA3323;
+            font-weight: normal;
+            font-style: normal;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .contador {
+            position: absolute;
+            top: -5px;
+            font-size: 10px;
+            right: 8px;
+            font-weight: bold;
+        }
+
+
+        .fila {
+            margin-top: 20px;
+            padding-top: 40px;
+            margin: 10px;
+            font-size: 2rem;
+        }
+
+        dialog {
+            width: 90%;
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+            border: none;
+            border-radius: 16px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+
+        .botones {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .botones button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 7px;
+            background-color: #2f3e46;
+            color: white;
+        }
+
+        .botones button:hover {
+            background-color: #a8512e;
+            cursor: pointer;
+        }
+
+        #btn_limpiar {
+            display: block;
+            width: 70%;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background-color: #a8512e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        #btn_limpiar:hover {
+            background-color: #2f3e46;
+            cursor: pointer;
+        }
+
+        .lista-eventos {
+            list-style: none;
+            padding: 0;
+            border-bottom: 1px solid gray;
+        }
+
+        .lista-eventos li {
+            margin-bottom: 10px;
+        }
+
+        .edit-border {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="cabecera">
+        <h1 class="titulo">CALENDARIO 2026</h1>
+        <nav>
+            <ul class="menu">
+                <li><a class="enlace" href="#enero">ENERO</a></li>
+                <li><a class="enlace" href="#febrero">FEBRERO</a></li>
+                <li><a class="enlace" href="#marzo">MARZO</a></li>
+                <li><a class="enlace" href="#abril">ABRIL</a></li>
+                <li><a class="enlace" href="#mayo">MAYO</a></li>
+                <li><a class="enlace" href="#junio">JUNIO</a></li>
+                <li><a class="enlace" href="#julio">JULIO</a></li>
+                <li><a class="enlace" href="#agosto">AGOSTO</a></li>
+                <li><a class="enlace" href="#septiembre">SEPTIEMBRE</a></li>
+                <li><a class="enlace" href="#octubre">OCTUBRE</a></li>
+                <li><a class="enlace" href="#noviembre">NOVIEMBRE</a></li>
+                <li><a class="enlace" href="#diciembre">DICIEMBRE</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <dialog id="dialog_event">
+        <h2 class="dialog-title">Nuevo evento</h2>
+
+        <div class="campo">
+            <label for="in_event_name">Nombre del evento</label>
+            <input type="text" id="in_event_name">
+        </div>
+
+        <div class="campo">
+            <label for="in_date">Fecha</label>
+            <input type="date" id="in_date">
+        </div>
+
+        <div class="campo">
+            <label for="in_time">Hora</label>
+            <input type="time" id="in_time">
+        </div>
+
+        <div class="campo">
+            <label for="in_place">Lugar</label>
+            <input type="text" id="in_place">
+        </div>
+
+
+        <div class="campo-check">
+            <input type="checkbox" id="in_ck_asist">
+            <label for="in_ck_asist">Asistiré</label>
+        </div>
+
+        <div class="botones">
+            <button type="button" id="btn_event">Guardar evento</button>
+            <button type="button" id="btn_cancel_event">Cancelar</button>
+        </div>
+    </dialog>
+
+    <dialog id="dialog_info">
+
+        <h3 id="info_titulo"></h3>
+        <p>Fecha: <span id="info_fecha"></span></p>
+        <p>Hora: <span id="info_hora"></span></p>
+        <p>Lugar: <span id="info_lugar"></span></p>
+
+        <button id="btn_eliminar_info">Eliminar</button>
+        <button id="btn_actualizar_info">Actualizar</button>
+        <button id="btn_cerrar_info">Cerrar</button>
+
+
+    </dialog>
+
+    <dialog id="dialog_lista">
+        <h2>Eventos del dia</h2>
+        <h3 id="titulo_fecha_lista"></h3>
+
+        <div id="lista_eventos"></div>
+
+        <button type="button" id="btn_cerrar_lista">Cerrar</button>
+    </dialog>
+
+    <main class="principal">
+        <section class="fila-meses">
+            <article class="mes" id="enero">
+                <table class="tabla">
+                    <caption class="titulo-mes">ENERO</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/enero.jpg"
+                                    alt="Ilustración del mes de enero"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="dia"><span class="numero">1</span></td>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia sabado"><span class="numero">3</span></td>
+                            <td class="dia domingo"><span class="numero">4</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">5</span></td>
+                            <td class="dia"><span class="numero">6</span></td>
+                            <td class="dia"><span class="numero">7</span></td>
+                            <td class="dia"><span class="numero">8</span></td>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia sabado"><span class="numero">10</span></td>
+                            <td class="dia domingo"><span class="numero">11</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">12</span></td>
+                            <td class="dia"><span class="numero">13</span></td>
+                            <td class="dia"><span class="numero">14</span></td>
+                            <td class="dia"><span class="numero">15</span></td>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia sabado"><span class="numero">17</span></td>
+                            <td class="dia domingo"><span class="numero">18</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">19</span></td>
+                            <td class="dia"><span class="numero">20</span></td>
+                            <td class="dia"><span class="numero">21</span></td>
+                            <td class="dia"><span class="numero">22</span></td>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia sabado"><span class="numero">24</span></td>
+                            <td class="dia domingo"><span class="numero">25</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">26</span></td>
+                            <td class="dia"><span class="numero">27</span></td>
+                            <td class="dia"><span class="numero">28</span></td>
+                            <td class="dia"><span class="numero">29</span></td>
+                            <td class="dia"><span class="numero">30</span></td>
+                            <td class="dia sabado"><span class="numero">31</span></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="mes" id="febrero">
+                <table class="tabla">
+                    <caption class="titulo-mes">FEBRERO</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/febrero.jpg"
+                                    alt="Ilustración del mes de febrero"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="dia domingo"><span class="numero">1</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia"><span class="numero">3</span></td>
+                            <td class="dia"><span class="numero">4</span></td>
+                            <td class="dia"><span class="numero">5</span></td>
+                            <td class="dia"><span class="numero">6</span></td>
+                            <td class="dia sabado"><span class="numero">7</span></td>
+                            <td class="dia domingo"><span class="numero">8</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia"><span class="numero">10</span></td>
+                            <td class="dia"><span class="numero">11</span></td>
+                            <td class="dia"><span class="numero">12</span></td>
+                            <td class="dia"><span class="numero">13</span></td>
+                            <td class="dia sabado"><span class="numero">14</span></td>
+                            <td class="dia domingo"><span class="numero">15</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia"><span class="numero">17</span></td>
+                            <td class="dia"><span class="numero">18</span></td>
+                            <td class="dia"><span class="numero">19</span></td>
+                            <td class="dia"><span class="numero">20</span></td>
+                            <td class="dia sabado"><span class="numero">21</span></td>
+                            <td class="dia domingo"><span class="numero">22</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia"><span class="numero">24</span></td>
+                            <td class="dia"><span class="numero">25</span></td>
+                            <td class="dia"><span class="numero">26</span></td>
+                            <td class="dia"><span class="numero">27</span></td>
+                            <td class="dia sabado"><span class="numero">28</span></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+        <section class="fila-meses">
+            <article class="mes" id="marzo">
+                <table class="tabla">
+                    <caption class="titulo-mes">MARZO</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="7"><img class="foto" src="imagenes/marzo.jpg"
+                                    alt="Ilustración del mes de marzo"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="dia domingo"><span class="numero">1</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia"><span class="numero">3</span></td>
+                            <td class="dia"><span class="numero">4</span></td>
+                            <td class="dia"><span class="numero">5</span></td>
+                            <td class="dia"><span class="numero">6</span></td>
+                            <td class="dia sabado"><span class="numero">7</span></td>
+                            <td class="dia domingo"><span class="numero">8</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia"><span class="numero">10</span></td>
+                            <td class="dia"><span class="numero">11</span></td>
+                            <td class="dia"><span class="numero">12</span></td>
+                            <td class="dia"><span class="numero">13</span></td>
+                            <td class="dia sabado"><span class="numero">14</span></td>
+                            <td class="dia domingo"><span class="numero">15</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia"><span class="numero">17</span></td>
+                            <td class="dia"><span class="numero">18</span></td>
+                            <td class="dia"><span class="numero">19</span></td>
+                            <td class="dia"><span class="numero">20</span></td>
+                            <td class="dia sabado"><span class="numero">21</span></td>
+                            <td class="dia domingo"><span class="numero">22</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia"><span class="numero">24</span></td>
+                            <td class="dia"><span class="numero">25</span></td>
+                            <td class="dia"><span class="numero">26</span></td>
+                            <td class="dia"><span class="numero">27</span></td>
+                            <td class="dia sabado"><span class="numero">28</span></td>
+                            <td class="dia domingo"><span class="numero">29</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">30</span></td>
+                            <td class="dia"><span class="numero">31</span></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="mes" id="abril">
+                <table class="tabla">
+                    <caption class="titulo-mes">ABRIL</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/abril.jpg"
+                                    alt="Ilustración del mes de abril"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="dia"><span class="numero">1</span></td>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia"><span class="numero">3</span></td>
+                            <td class="dia sabado"><span class="numero">4</span></td>
+                            <td class="dia domingo"><span class="numero">5</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">6</span></td>
+                            <td class="dia"><span class="numero">7</span></td>
+                            <td class="dia"><span class="numero">8</span></td>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia"><span class="numero">10</span></td>
+                            <td class="dia sabado"><span class="numero">11</span></td>
+                            <td class="dia domingo"><span class="numero">12</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">13</span></td>
+                            <td class="dia"><span class="numero">14</span></td>
+                            <td class="dia"><span class="numero">15</span></td>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia"><span class="numero">17</span></td>
+                            <td class="dia sabado"><span class="numero">18</span></td>
+                            <td class="dia domingo"><span class="numero">19</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">20</span></td>
+                            <td class="dia"><span class="numero">21</span></td>
+                            <td class="dia"><span class="numero">22</span></td>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia"><span class="numero">24</span></td>
+                            <td class="dia sabado"><span class="numero">25</span></td>
+                            <td class="dia domingo"><span class="numero">26</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">27</span></td>
+                            <td class="dia"><span class="numero">28</span></td>
+                            <td class="dia"><span class="numero">29</span></td>
+                            <td class="dia"><span class="numero">30</span></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+        <section class="fila-meses">
+            <article class="mes" id="mayo">
+                <table class="tabla">
+                    <caption class="titulo-mes">MAYO</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/mayo.jpg"
+                                    alt="Ilustración del mes de mayo"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="dia"><span class="numero">1</span></td>
+                            <td class="dia sabado"><span class="numero">2</span></td>
+                            <td class="dia domingo"><span class="numero">3</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">4</span></td>
+                            <td class="dia"><span class="numero">5</span></td>
+                            <td class="dia"><span class="numero">6</span></td>
+                            <td class="dia"><span class="numero">7</span></td>
+                            <td class="dia"><span class="numero">8</span></td>
+                            <td class="dia sabado"><span class="numero">9</span></td>
+                            <td class="dia domingo"><span class="numero">10</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">11</span></td>
+                            <td class="dia"><span class="numero">12</span></td>
+                            <td class="dia"><span class="numero">13</span></td>
+                            <td class="dia"><span class="numero">14</span></td>
+                            <td class="dia"><span class="numero">15</span></td>
+                            <td class="dia sabado"><span class="numero">16</span></td>
+                            <td class="dia domingo"><span class="numero">17</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">18</span></td>
+                            <td class="dia"><span class="numero">19</span></td>
+                            <td class="dia"><span class="numero">20</span></td>
+                            <td class="dia"><span class="numero">21</span></td>
+                            <td class="dia"><span class="numero">22</span></td>
+                            <td class="dia sabado"><span class="numero">23</span></td>
+                            <td class="dia domingo"><span class="numero">24</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">25</span></td>
+                            <td class="dia"><span class="numero">26</span></td>
+                            <td class="dia"><span class="numero">27</span></td>
+                            <td class="dia"><span class="numero">28</span></td>
+                            <td class="dia"><span class="numero">29</span></td>
+                            <td class="dia sabado"><span class="numero">30</span></td>
+                            <td class="dia domingo"><span class="numero">31</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="mes" id="junio">
+                <table class="tabla">
+                    <caption class="titulo-mes">JUNIO</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/junio.jpg"
+                                    alt="Ilustración del mes de junio"></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">1</span></td>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia"><span class="numero">3</span></td>
+                            <td class="dia"><span class="numero">4</span></td>
+                            <td class="dia"><span class="numero">5</span></td>
+                            <td class="dia sabado"><span class="numero">6</span></td>
+                            <td class="dia domingo"><span class="numero">7</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">8</span></td>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia"><span class="numero">10</span></td>
+                            <td class="dia"><span class="numero">11</span></td>
+                            <td class="dia"><span class="numero">12</span></td>
+                            <td class="dia sabado"><span class="numero">13</span></td>
+                            <td class="dia domingo"><span class="numero">14</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">15</span></td>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia"><span class="numero">17</span></td>
+                            <td class="dia"><span class="numero">18</span></td>
+                            <td class="dia"><span class="numero">19</span></td>
+                            <td class="dia sabado"><span class="numero">20</span></td>
+                            <td class="dia domingo"><span class="numero">21</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">22</span></td>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia"><span class="numero">24</span></td>
+                            <td class="dia"><span class="numero">25</span></td>
+                            <td class="dia"><span class="numero">26</span></td>
+                            <td class="dia sabado"><span class="numero">27</span></td>
+                            <td class="dia domingo"><span class="numero">28</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">29</span></td>
+                            <td class="dia"><span class="numero">30</span></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+        <section class="fila-meses">
+            <article class="mes" id="julio">
+                <table class="tabla">
+                    <caption class="titulo-mes">JULIO</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/julio.jpg"
+                                    alt="Ilustración del mes de julio"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="dia"><span class="numero">1</span></td>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia"><span class="numero">3</span></td>
+                            <td class="dia sabado"><span class="numero">4</span></td>
+                            <td class="dia domingo"><span class="numero">5</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">6</span></td>
+                            <td class="dia"><span class="numero">7</span></td>
+                            <td class="dia"><span class="numero">8</span></td>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia"><span class="numero">10</span></td>
+                            <td class="dia sabado"><span class="numero">11</span></td>
+                            <td class="dia domingo"><span class="numero">12</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">13</span></td>
+                            <td class="dia"><span class="numero">14</span></td>
+                            <td class="dia"><span class="numero">15</span></td>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia"><span class="numero">17</span></td>
+                            <td class="dia sabado"><span class="numero">18</span></td>
+                            <td class="dia domingo"><span class="numero">19</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">20</span></td>
+                            <td class="dia"><span class="numero">21</span></td>
+                            <td class="dia"><span class="numero">22</span></td>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia"><span class="numero">24</span></td>
+                            <td class="dia sabado"><span class="numero">25</span></td>
+                            <td class="dia domingo"><span class="numero">26</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">27</span></td>
+                            <td class="dia"><span class="numero">28</span></td>
+                            <td class="dia"><span class="numero">29</span></td>
+                            <td class="dia"><span class="numero">30</span></td>
+                            <td class="dia"><span class="numero">31</span></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="mes" id="agosto">
+                <table class="tabla">
+                    <caption class="titulo-mes">AGOSTO</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="7"><img class="foto" src="imagenes/agosto.jpg"
+                                    alt="Ilustración del mes de agosto"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="dia sabado"><span class="numero">1</span></td>
+                            <td class="dia domingo"><span class="numero">2</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">3</span></td>
+                            <td class="dia"><span class="numero">4</span></td>
+                            <td class="dia"><span class="numero">5</span></td>
+                            <td class="dia"><span class="numero">6</span></td>
+                            <td class="dia"><span class="numero">7</span></td>
+                            <td class="dia sabado"><span class="numero">8</span></td>
+                            <td class="dia domingo"><span class="numero">9</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">10</span></td>
+                            <td class="dia"><span class="numero">11</span></td>
+                            <td class="dia"><span class="numero">12</span></td>
+                            <td class="dia"><span class="numero">13</span></td>
+                            <td class="dia"><span class="numero">14</span></td>
+                            <td class="dia sabado"><span class="numero">15</span></td>
+                            <td class="dia domingo"><span class="numero">16</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">17</span></td>
+                            <td class="dia"><span class="numero">18</span></td>
+                            <td class="dia"><span class="numero">19</span></td>
+                            <td class="dia"><span class="numero">20</span></td>
+                            <td class="dia"><span class="numero">21</span></td>
+                            <td class="dia sabado"><span class="numero">22</span></td>
+                            <td class="dia domingo"><span class="numero">23</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">24</span></td>
+                            <td class="dia"><span class="numero">25</span></td>
+                            <td class="dia"><span class="numero">26</span></td>
+                            <td class="dia"><span class="numero">27</span></td>
+                            <td class="dia"><span class="numero">28</span></td>
+                            <td class="dia sabado"><span class="numero">29</span></td>
+                            <td class="dia domingo"><span class="numero">30</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">31</span></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+        <section class="fila-meses">
+            <article class="mes" id="septiembre">
+                <table class="tabla">
+                    <caption class="titulo-mes">SEPTIEMBRE</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/septiembre.jpg"
+                                    alt="Ilustración del mes de septiembre"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="dia"><span class="numero">1</span></td>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia"><span class="numero">3</span></td>
+                            <td class="dia"><span class="numero">4</span></td>
+                            <td class="dia sabado"><span class="numero">5</span></td>
+                            <td class="dia domingo"><span class="numero">6</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">7</span></td>
+                            <td class="dia"><span class="numero">8</span></td>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia"><span class="numero">10</span></td>
+                            <td class="dia"><span class="numero">11</span></td>
+                            <td class="dia sabado"><span class="numero">12</span></td>
+                            <td class="dia domingo"><span class="numero">13</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">14</span></td>
+                            <td class="dia"><span class="numero">15</span></td>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia"><span class="numero">17</span></td>
+                            <td class="dia"><span class="numero">18</span></td>
+                            <td class="dia sabado"><span class="numero">19</span></td>
+                            <td class="dia domingo"><span class="numero">20</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">21</span></td>
+                            <td class="dia"><span class="numero">22</span></td>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia"><span class="numero">24</span></td>
+                            <td class="dia"><span class="numero">25</span></td>
+                            <td class="dia sabado"><span class="numero">26</span></td>
+                            <td class="dia domingo"><span class="numero">27</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">28</span></td>
+                            <td class="dia"><span class="numero">29</span></td>
+                            <td class="dia"><span class="numero">30</span></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="mes" id="octubre">
+                <table class="tabla">
+                    <caption class="titulo-mes">OCTUBRE</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/octubre.jpg"
+                                    alt="Ilustración del mes de octubre"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="dia"><span class="numero">1</span></td>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia sabado"><span class="numero">3</span></td>
+                            <td class="dia domingo"><span class="numero">4</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">5</span></td>
+                            <td class="dia"><span class="numero">6</span></td>
+                            <td class="dia"><span class="numero">7</span></td>
+                            <td class="dia"><span class="numero">8</span></td>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia sabado"><span class="numero">10</span></td>
+                            <td class="dia domingo"><span class="numero">11</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">12</span></td>
+                            <td class="dia"><span class="numero">13</span></td>
+                            <td class="dia"><span class="numero">14</span></td>
+                            <td class="dia"><span class="numero">15</span></td>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia sabado"><span class="numero">17</span></td>
+                            <td class="dia domingo"><span class="numero">18</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">19</span></td>
+                            <td class="dia"><span class="numero">20</span></td>
+                            <td class="dia"><span class="numero">21</span></td>
+                            <td class="dia"><span class="numero">22</span></td>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia sabado"><span class="numero">24</span></td>
+                            <td class="dia domingo"><span class="numero">25</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">26</span></td>
+                            <td class="dia"><span class="numero">27</span></td>
+                            <td class="dia"><span class="numero">28</span></td>
+                            <td class="dia"><span class="numero">29</span></td>
+                            <td class="dia"><span class="numero">30</span></td>
+                            <td class="dia sabado"><span class="numero">31</span></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+        <section class="fila-meses">
+            <article class="mes" id="noviembre">
+                <table class="tabla">
+                    <caption class="titulo-mes">NOVIEMBRE</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="7"><img class="foto" src="imagenes/noviembre.jpg"
+                                    alt="Ilustración del mes de noviembre"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="dia domingo"><span class="numero">1</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia"><span class="numero">3</span></td>
+                            <td class="dia"><span class="numero">4</span></td>
+                            <td class="dia"><span class="numero">5</span></td>
+                            <td class="dia"><span class="numero">6</span></td>
+                            <td class="dia sabado"><span class="numero">7</span></td>
+                            <td class="dia domingo"><span class="numero">8</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia"><span class="numero">10</span></td>
+                            <td class="dia"><span class="numero">11</span></td>
+                            <td class="dia"><span class="numero">12</span></td>
+                            <td class="dia"><span class="numero">13</span></td>
+                            <td class="dia sabado"><span class="numero">14</span></td>
+                            <td class="dia domingo"><span class="numero">15</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia"><span class="numero">17</span></td>
+                            <td class="dia"><span class="numero">18</span></td>
+                            <td class="dia"><span class="numero">19</span></td>
+                            <td class="dia"><span class="numero">20</span></td>
+                            <td class="dia sabado"><span class="numero">21</span></td>
+                            <td class="dia domingo"><span class="numero">22</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia"><span class="numero">24</span></td>
+                            <td class="dia"><span class="numero">25</span></td>
+                            <td class="dia"><span class="numero">26</span></td>
+                            <td class="dia"><span class="numero">27</span></td>
+                            <td class="dia sabado"><span class="numero">28</span></td>
+                            <td class="dia domingo"><span class="numero">29</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">30</span></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="mes" id="diciembre">
+                <table class="tabla">
+                    <caption class="titulo-mes">DICIEMBRE</caption>
+                    <tbody>
+                        <tr>
+                            <th class="dia-semana">L</th>
+                            <th class="dia-semana">M</th>
+                            <th class="dia-semana">X</th>
+                            <th class="dia-semana">J</th>
+                            <th class="dia-semana">V</th>
+                            <th class="dia-semana">S</th>
+                            <th class="dia-semana">D</th>
+                            <td class="celda-foto" rowspan="6"><img class="foto" src="imagenes/diciembre.jpg"
+                                    alt="Ilustración del mes de diciembre"></td>
+                        </tr>
+                        <tr>
+                            <td class="vacio"></td>
+                            <td class="dia"><span class="numero">1</span></td>
+                            <td class="dia"><span class="numero">2</span></td>
+                            <td class="dia"><span class="numero">3</span></td>
+                            <td class="dia"><span class="numero">4</span></td>
+                            <td class="dia sabado"><span class="numero">5</span></td>
+                            <td class="dia domingo"><span class="numero">6</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">7</span></td>
+                            <td class="dia"><span class="numero">8</span></td>
+                            <td class="dia"><span class="numero">9</span></td>
+                            <td class="dia"><span class="numero">10</span></td>
+                            <td class="dia"><span class="numero">11</span></td>
+                            <td class="dia sabado"><span class="numero">12</span></td>
+                            <td class="dia domingo"><span class="numero">13</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">14</span></td>
+                            <td class="dia"><span class="numero">15</span></td>
+                            <td class="dia"><span class="numero">16</span></td>
+                            <td class="dia"><span class="numero">17</span></td>
+                            <td class="dia"><span class="numero">18</span></td>
+                            <td class="dia sabado"><span class="numero">19</span></td>
+                            <td class="dia domingo"><span class="numero">20</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">21</span></td>
+                            <td class="dia"><span class="numero">22</span></td>
+                            <td class="dia"><span class="numero">23</span></td>
+                            <td class="dia"><span class="numero">24</span></td>
+                            <td class="dia"><span class="numero">25</span></td>
+                            <td class="dia sabado"><span class="numero">26</span></td>
+                            <td class="dia domingo"><span class="numero">27</span></td>
+                        </tr>
+                        <tr>
+                            <td class="dia"><span class="numero">28</span></td>
+                            <td class="dia"><span class="numero">29</span></td>
+                            <td class="dia"><span class="numero">30</span></td>
+                            <td class="dia"><span class="numero">31</span></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                            <td class="vacio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+    </main>
+    <footer class="pie">
+        <p>Confección y publicación de páginas web</p>
+        <p>Valencia, 2026</p>
+    </footer>
+
+    <script>
+        //// Datos base
+
+        const datos = [];
+        const id = 'tekle3'
+        const url_guardar = `https://datos.cursoweb.tech/guardar.php?dest=${id}`
+        const url_leer = `https://datos.cursoweb.tech/leer.php?dest=${id}`
+        const usuario = "labora";
+        const password = "Cl4v3$";
+        // Codificar credenciales en Base64
+        const credenciales = btoa(`${usuario}:${password}`);
+
+        ///Enviar datos
+
+        async function enviaDatos(datos) {
+            console.log('env2', JSON.stringify(datos))
+            try {
+                const res = await fetch(url_guardar, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Basic ${credenciales}`
+                    },
+                    body: JSON.stringify(datos)
+                })
+
+                if (!res.ok) {
+                    throw new Error('Error en la conexión');
+                }
+                const data = await res.json()
+                console.log('envia', data)
+
+                return true;
+
+            } catch (err) {
+                console.error("Error:", err);
+
+                return false;
+
+            }
+        };
+
+        async function leerDatos() {
+            try {
+                const res = await fetch(url_leer)
+                if (!res.ok) {
+                    throw new Error('No se ha podido conectar')
+                }
+
+                const datos = await res.json();
+                console.log('lee', datos)
+
+                calendario.length = 0;
+                calendario.push(...datos)
+
+                /// envio los datos a proceso
+
+                pintaCalendario();
+
+            } catch (error) {
+                console.error("Error:", error)
+            };
+
+        }
+
+        ///// DOM calendario
+        const IN_DATE = document.getElementById('in_date');
+        const IN_ASIST = document.getElementById('in_ck_asist');
+        const IN_TITULO = document.getElementById('in_event_name');
+        const BTN_EVENT = document.getElementById('btn_event');
+        const BTN_CANCEL_EVENT = document.getElementById('btn_cancel_event');
+        const BTN_LIMPIAR = document.getElementById('btn_limpiar');
+        const DIALOG_EVENT = document.getElementById('dialog_event');
+        const IN_TIME = document.getElementById('in_time');
+        const IN_PLACE = document.getElementById('in_place');
+
+        //// DOM modal - dialog_event
+        const INFO_TITULO = document.getElementById('info_titulo');
+        const INFO_FECHA = document.getElementById('info_fecha');
+        const INFO_HORA = document.getElementById('info_hora');
+        const INFO_LUGAR = document.getElementById('info_lugar');
+        const DIALOG_INFO = document.getElementById('dialog_info');
+
+        const BTN_CLOSE_INFO = document.getElementById('btn_cerrar_info');
+        const BTN_DELETE_INFO = document.getElementById('btn_eliminar_info');
+        const BTN_ACTUALIZAR_INFO = document.getElementById('btn_actualizar_info');
+
+        const DIALOG_LISTA = document.getElementById('dialog_lista');
+        const LISTA_EVENTOS = document.getElementById('lista_eventos');
+        const BTN_CERRAR_LISTA = document.getElementById('btn_cerrar_lista');
+        const TITULO_FECHA_LISTA = document.getElementById('titulo_fecha_lista');
+
+
+        let dias = document.querySelectorAll('.dia');
+        let meses = ['enero', 'febrero', 'marzo', 'abril',
+            'mayo', 'junio', 'julio', 'agosto',
+            'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+        let calendario = [];
+        let eventoSeleccionado = null;
+
+        function showDialog() {
+            DIALOG_EVENT.showModal();
+        };
+
+        for (let i = 0; i < dias.length; i++) {
+            let numero = dias[i].querySelector('.numero');
+
+            numero.onclick = function () {
+                let dia = numero.textContent
+                if (dia.length === 1) {
+                    dia = '0' + dia;
+                }
+
+                let mes = dias[i].closest('.mes').id;
+                let numMonth = meses.indexOf(mes) + 1;
+
+                if (numMonth < 10) {
+                    numMonth = '0' + numMonth;
+                }
+
+                IN_DATE.value = '2026-' + numMonth + '-' + dia;
+                showDialog();
+            }
+        };
+
+        BTN_EVENT.onclick = async function () {
+
+
+            if (IN_TITULO.value.trim() === '') {
+                alert('Introduce el nombre del evento')
+                return;
+            }
+
+            /* if (IN_DATE.value === '') {
+                 alert('Introduce la fecha del evento')
+                 return;
+             }*/
+
+           /*if (IN_TIME.value === '') {
+                alert('Introduce la hora del evento')
+                return;
+            }*/
+
+            let identificador = calendario.length + 1;
+            let evento = {};
+            evento.titulo = IN_TITULO.value;
+            evento.fecha = IN_DATE.value;
+            evento.asistencia = IN_ASIST.checked;
+            evento.hora = IN_TIME.value;
+            evento.lugar = IN_PLACE.value;
+            evento.id = 'AFZ-00' + identificador;
+
+            console.log('envia', evento)
+            /// enviar datos al servedor 
+            const guardados = await enviaDatos(evento);
+
+            if (guardados) {
+
+                await leerDatos();
+
+                IN_TITULO.value = '';
+                IN_DATE.value = '';
+                IN_TIME.value = '';
+                IN_PLACE.value = '';
+                IN_ASIST.checked = false;
+                DIALOG_EVENT.close();
+            }
+        };
+
+
+
+        function pintaCalendario() {
+            document.querySelectorAll('.evento').forEach(event => {
+                event.remove();
+            });
+
+            for (const evento of calendario) {
+
+                let fecha = evento.fecha.split('-');
+                let year = parseInt(fecha[0]);
+                let month = parseInt(fecha[1]);
+                let day = parseInt(fecha[2]);
+                console.log('dia', day)
+
+                for (let i = 0; i < dias.length; i++) {
+                    let currentDay = parseInt(dias[i].querySelector('.numero').textContent);
+
+                    let currentMonth = meses.indexOf(dias[i].closest('.mes').id) + 1;
+                    if (
+                        year === 2026 &&
+                        month === currentMonth &&
+                        day === currentDay
+                    ) {
+
+                        let icon = dias[i].querySelector('.evento');
+                        if (!icon) {
+                            icon = document.createElement('span');
+                            icon.className = 'evento';
+                            icon.textContent = 'event_note';
+
+                            let counter = document.createElement('span');
+                            counter.className = 'contador';
+                            counter.textContent = 0;
+
+                            icon.append(counter);
+
+                            icon.onclick = function () {
+
+                                LISTA_EVENTOS.innerHTML = '';
+
+                                let fechaLista = day + '/' + month + '/' + year;
+
+                                TITULO_FECHA_LISTA.textContent = fechaLista;
+
+                                let lista = document.createElement('ul');
+                                lista.className = 'lista-eventos';
+
+
+                                for (let j = 0; j < calendario.length; j++) {
+
+                                    LISTA_EVENTOS.append(lista);
+
+                                    let fechaEvent = calendario[j].fecha.split('-');
+
+                                    let yearEvent = parseInt(fechaEvent[0]);
+                                    let monthEvent = parseInt(fechaEvent[1]);
+                                    let dayEvent = parseInt(fechaEvent[2]);
+
+                                    if (yearEvent === year && monthEvent === month && dayEvent === day) {
+                                        let boton = document.createElement('button');
+                                        boton.textContent = calendario[j].titulo;
+
+                                        boton.onclick = function () {
+                                            eventoSeleccionado = calendario[j];
+                                            INFO_TITULO.textContent = calendario[j].titulo;
+                                            INFO_FECHA.textContent = calendario[j].fecha;
+                                            INFO_HORA.textContent = calendario[j].hora;
+                                            INFO_LUGAR.textContent = calendario[j].lugar;
+
+                                            DIALOG_LISTA.close();
+                                            DIALOG_INFO.showModal();
+                                        };
+
+                                        let elemento = document.createElement('li');
+                                        elemento.append(boton);
+                                        lista.append(elemento);
+                                    }
+                                }
+
+                                DIALOG_LISTA.showModal();
+
+                            };
+
+
+                            dias[i].append(icon);
+                            console.log(icon)
+                        }
+                        let numberIcons = icon.querySelector('.contador');
+                        numberIcons.textContent = Number(numberIcons.textContent) + 1;
+
+
+
+                    };
+
+                }
+            }
+        };
+
+
+        function actuaEvento() {
+            INFO_TITULO.contentEditable = true;
+            INFO_FECHA.contentEditable = true;
+            INFO_HORA.contentEditable = true;
+            INFO_LUGAR.contentEditable = true;
+
+            INFO_TITULO.classList.add('edit-border');
+            INFO_FECHA.classList.add('edit-border');
+            INFO_HORA.classList.add('edit-border');
+            INFO_LUGAR.classList.add('edit-border');
+
+            BTN_ACTUALIZAR_INFO.textContent = 'Guardar';
+
+            BTN_ACTUALIZAR_INFO.onclick = function () {
+                modificaEvento(
+                    INFO_TITULO.textContent,
+                    INFO_FECHA.textContent,
+                    INFO_HORA.textContent,
+                    INFO_LUGAR.textContent
+                );
+
+                INFO_TITULO.contentEditable = false;
+                INFO_FECHA.contentEditable = false;
+                INFO_HORA.contentEditable = false;
+                INFO_LUGAR.contentEditable = false;
+
+                INFO_TITULO.classList.remove('edit-border');
+                INFO_FECHA.classList.remove('edit-border');
+                INFO_HORA.classList.remove('edit-border');
+                INFO_LUGAR.classList.remove('edit-border');
+            };
+
+
+
+        };
+
+
+        async function modificaEvento(titulo, fecha, hora, lugar) {
+
+            let position = calendario.indexOf(eventoSeleccionado);
+            const obj = {
+                actualizar: position,
+                titulo: titulo,
+                fecha: fecha,
+                hora: hora,
+                lugar: lugar
+            };
+
+            await enviaDatos(obj);
+
+            await leerDatos();
+
+            console.log(calendario)
+
+
+
+        }
+
+
+        BTN_ACTUALIZAR_INFO.onclick = actuaEvento;
+
+
+        BTN_CLOSE_INFO.onclick = function () {
+            DIALOG_INFO.close();
+        };
+
+
+        BTN_CERRAR_LISTA.onclick = function () {
+            DIALOG_LISTA.close();
+        };
+
+        BTN_DELETE_INFO.onclick = async function () {
+            let confirmar = confirm('Deseas limpiar el calendario?')
+            if (confirmar) {
+                let index = calendario.indexOf(eventoSeleccionado);
+                const obj = {
+                    eliminar: index
+                }
+                const guardados = await enviaDatos(obj);
+
+                if (guardados) {
+
+                    await leerDatos();
+                }
+
+                DIALOG_INFO.close();
+            }
+        };
+
+
+
+        BTN_CANCEL_EVENT.onclick = function () {
+            IN_TITULO.value = '';
+            IN_DATE.value = '';
+            IN_TIME.value = '';
+            IN_PLACE.value = '';
+            IN_ASIST.checked = false;
+            DIALOG_EVENT.close();
+        };
+
+        /*BTN_LIMPIAR.onclick = function () {
+            let confirmar = confirm('Deseas limpiar el calendario?')
+            if (confirmar) {
+                calendario = [];
+                document.querySelectorAll('.evento').forEach(function (event) {
+                    event.remove()
+                })
+                    ;
+            }
+        };*/
+
+        leerDatos();
+
+    </script>
+</body>
+
+</html>
