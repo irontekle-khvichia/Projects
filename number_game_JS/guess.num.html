@@ -8,73 +8,120 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=sports_esports" />
 
     <style>
-        * {
+         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #F3F5F4;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px 35px;
+            background-color: white;
+            border: 1px solid #E1E7E3;
+            border-radius: 12px;
             text-align: center;
         }
 
         h1 {
-
-            font-family: sans-serif;
-            font-size: 4rem;
-            color: darkslategray;
-            margin: 20px;
+            font-size: 2.2rem;
+            color: #164E52;
+            margin-bottom: 20px;
         }
 
-
         .material-symbols-outlined {
-            font-size: 4rem;
-            color: #70140b;
+            font-size: 2rem;
+            color: #39877B;
             vertical-align: middle;
         }
 
         .parrafo {
-            font-size: 2rem;
-            color: darkslategrey;
-            padding-bottom: 20px;
+            font-size: 1.1rem;
+            color: #77736D;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
 
         label {
-            font-size: 1.5rem;
-            color: darkslategray;
+            display: block;
+            font-size: 1rem;
+            color: #292927;
+            margin-bottom: 12px;
+        }
+
+        #in_number {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #D5DDD8;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        #in_number:focus {
+            outline: none;
+            border-color: #39877B;
         }
 
         #btn_comprobar {
-            background-color: darkcyan;
+            width: 100%;
+            padding: 12px;
+            background-color: #39877B;
             color: white;
-            padding: 5px 5px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
             cursor: pointer;
         }
 
+        #btn_comprobar:hover {
+            background-color: #164E52;
+        }
+
         #mensaje {
-            padding: 40px;
-            font-size: 1.5rem;
-            
+            min-height: 65px;
+            padding: 25px 10px 10px;
+            font-size: 1.1rem;
         }
 
         .error {
-            color: red;
+            color: #C34B4B;
         }
 
         .correcto {
-            color: green;
+            color: #39877B;
         }
 
         .cerca {
-            color: orange;
+            color: #D18B32;
         }
 
         .p-intentos {
-            font-size: 1.5rem;
-            color: darkslategray;
-            text-align: center;
-            align-items: center;
+            padding: 15px;
+            background-color: #F2F6F3;
+            border-radius: 6px;
+            font-size: 1rem;
+            color: #292927;
         }
+
+        #intentos {
+            color: #164E52;
+            font-weight: bold;
+        }
+
+       
     </style>
 
     </style>
